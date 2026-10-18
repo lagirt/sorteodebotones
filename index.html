@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elige tu destino</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Elige tu destino</h1>
+    <p class="subtitle">Haz clic en el botón rojo o en el botón azul para descubrir tu suerte.</p>
+
+    <div class="buttons-container">
+      <button id="btn-red" class="destiny-btn btn-red" type="button" onclick="chooseDestiny('rojo')">
+        Botón Rojo
+      </button>
+      <button id="btn-blue" class="destiny-btn btn-blue" type="button" onclick="chooseDestiny('azul')">
+        Botón Azul
+      </button>
+    </div>
+
+    <div id="result-area" class="result-area hidden" aria-live="polite">
+      <p id="result-message" class="result-message"></p>
+      <button id="play-again-btn" class="play-again-btn" type="button" onclick="resetGame()">
+        Volver a jugar
+      </button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
