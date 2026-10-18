@@ -9,19 +9,152 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f4f6f9;
+  background: linear-gradient(180deg, #0b132b 0%, #1c2541 45%, #3a506b 70%, #1d3557 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #1e293b;
   padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Escena de océano y barcos piratas de fondo */
+.ocean-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.moon {
+  position: absolute;
+  top: 8%;
+  right: 12%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fef9c3 0%, #fde047 65%, rgba(253, 224, 71, 0) 100%);
+  box-shadow: 0 0 60px 20px rgba(254, 240, 138, 0.3);
+}
+
+/* Barcos piratas y animaciones de navegación */
+.pirate-ship {
+  position: absolute;
+  will-change: transform;
+}
+
+.ship-bob {
+  animation: bobbing 3.5s ease-in-out infinite;
+}
+
+.ship-1 {
+  bottom: 18%;
+  width: 210px;
+  z-index: 3;
+  animation: sailRight 28s linear infinite;
+}
+
+.ship-2 {
+  bottom: 24%;
+  width: 155px;
+  opacity: 0.85;
+  z-index: 2;
+  animation: sailLeft 36s linear infinite;
+  animation-delay: -10s;
+}
+
+.ship-2 .ship-bob {
+  animation-duration: 4.2s;
+}
+
+.ship-3 {
+  bottom: 28%;
+  width: 105px;
+  opacity: 0.55;
+  z-index: 1;
+  animation: sailRight 48s linear infinite;
+  animation-delay: -22s;
+}
+
+@keyframes sailRight {
+  0% {
+    transform: translateX(-260px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 260px));
+  }
+}
+
+@keyframes sailLeft {
+  0% {
+    transform: translateX(calc(100vw + 240px));
+  }
+  100% {
+    transform: translateX(-240px);
+  }
+}
+
+@keyframes bobbing {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(2.5deg);
+  }
+}
+
+/* Olas del mar */
+.wave {
+  position: absolute;
+  left: -50%;
+  width: 200%;
+  border-radius: 38%;
+}
+
+.wave-back {
+  bottom: 0;
+  height: 29%;
+  background: linear-gradient(180deg, rgba(29, 53, 87, 0.85), #0f172a);
+  z-index: 1;
+  animation: waveMove 10s ease-in-out infinite alternate;
+}
+
+.wave-mid {
+  bottom: 0;
+  height: 23%;
+  background: linear-gradient(180deg, rgba(15, 76, 117, 0.85), #0b132b);
+  z-index: 2;
+  animation: waveMove 7s ease-in-out infinite alternate-reverse;
+}
+
+.wave-front {
+  bottom: 0;
+  height: 17%;
+  background: linear-gradient(180deg, rgba(11, 46, 89, 0.95), #060b19);
+  z-index: 4;
+  animation: waveMove 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes waveMove {
+  0% {
+    transform: translateX(-4%) translateY(0);
+  }
+  100% {
+    transform: translateX(4%) translateY(6px);
+  }
+}
+
+/* Tarjeta principal centrada */
 .container {
+  position: relative;
+  z-index: 10;
   width: 100%;
   max-width: 520px;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
   border-radius: 20px;
   padding: 2.5rem 2rem;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
   text-align: center;
 }
 
@@ -34,7 +167,7 @@ h1 {
 
 .subtitle {
   font-size: 1rem;
-  color: #64748b;
+  color: #475569;
   margin-bottom: 2rem;
 }
 
